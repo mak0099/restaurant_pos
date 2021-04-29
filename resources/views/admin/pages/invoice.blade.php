@@ -18,7 +18,9 @@
                             <table align="center" style="margin-bottom: 25px;text-align: center">
                                 <tbody>
                                     <tr>
-                                        <td><h4>{{$company_profile->company_name}}</h4></td>
+                                        <td>
+                                            <h4>{{$company_profile->company_name}}</h4>
+                                        </td>
                                     </tr>
                                     <tr>
                                         <td>{{$company_profile->company_address}}</td>
@@ -99,7 +101,7 @@
                                     </table>
                                     <div class="text-center" style="font-size: 12px">
                                         <!--<p>Address : {{$company_profile->company_address}}</p>-->
-                                        <p>Developed by Shadowhite Animators Ltd.</p>
+                                        <p>Developed by makNgBd</p>
                                     </div>
 
                                 </div>
@@ -107,7 +109,7 @@
                         </div>
                     </div>
                     <div class="pull-right">
-                        <a class="btn btn-primary btn-large pull-right" href="" onclick="print_content()"><i class="fa fa-print"></i> Print</a> 
+                        <a class="btn btn-primary btn-large pull-right" href="" onclick="print_content()"><i class="fa fa-print"></i> Print</a>
                     </div>
                 </div>
             </div>

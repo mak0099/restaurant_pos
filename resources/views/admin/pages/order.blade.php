@@ -23,7 +23,7 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
                         <button class="close" data-dismiss="alert">×</button>
                         @foreach($errors->all() as $error)
                         <p>
-                            <strong>Error!</strong>  {{ $error }}
+                            <strong>Error!</strong> {{ $error }}
                         </p>
                         @endforeach
                     </div>
@@ -45,9 +45,9 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
                             <div class="control-group">
                                 <label class="control-label"><i class="fa fa-search"></i> <b>Search Product :</b></label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Product Name / Code" id="search_product" name="search_product" class="span10 enterKey" autofocus=""/>
-                                    <input type="number" id="quantity" name="quantity" value="1" class="span2 enterKey" min="1" max="10000"/>
-                                    <input type="hidden" id="product_id" name="product_id"/>
+                                    <input type="text" placeholder="Product Name / Code" id="search_product" name="search_product" class="span10 enterKey" autofocus="" />
+                                    <input type="number" id="quantity" name="quantity" value="1" class="span2 enterKey" min="1" max="10000" />
+                                    <input type="hidden" id="product_id" name="product_id" />
                                 </div>
                             </div>
                         </form>
@@ -123,7 +123,7 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
                                         <td style="text-align: right;">{{$subtotal}} /=</td>
                                     </tr>
                                     <tr>
-                                        <td colspan="7" style="text-align: right;">Discount : 
+                                        <td colspan="7" style="text-align: right;">Discount :
                                             @if(Auth::user()->role)
                                             <a href="{{route('change_settings')}}" title="Change Settings"><span class="label label-inverse">{{ $settings->discount_type ? "Product Wise" : "Overall"}}</span></a>
                                             @else
@@ -151,11 +151,11 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
                                     </tr>
                                     <tr class="extra_discount_area" style="display: none;">
                                         <td colspan="7" style="text-align: right;"><span style="color: #F89406;">Extra Discount</span></td>
-                                        <td style="text-align: right;"><input style="text-align: right; margin: 0;" type="number" id="extra_discount" name="extra_discount" class="form-control calculate" ></td>
+                                        <td style="text-align: right;"><input style="text-align: right; margin: 0;" type="number" id="extra_discount" name="extra_discount" class="form-control calculate"></td>
                                     </tr>
                                     <tr class="extra_discount_area" style="display: none;">
                                         <td colspan="7" style="text-align: right;"><span style="color: #F89406;">Discount Reference</span></td>
-                                        <td style="text-align: left;"><input style="margin: 0;" type="text" id="discount_reference" name="discount_reference" class="form-control" ></td>
+                                        <td style="text-align: left;"><input style="margin: 0;" type="text" id="discount_reference" name="discount_reference" class="form-control"></td>
                                     </tr>
                                     <tr>
                                         <td colspan="7" style="text-align: right;">Recieve Amount</td>
@@ -177,7 +177,7 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
                         <div class="widget-content">
                             <div class="alert alert-block text-center alert-success"> <a class="close" data-dismiss="alert" href="#">×</a>
                                 <h4 class="alert-heading">Empty Orders</h4>
-                                There has no items to order 
+                                There has no items to order
                             </div>
                         </div>
                         @endif
@@ -187,49 +187,50 @@ $orders = App\TempOrder::where('user_id', Auth::id())->get();
         </div>
     </div>
 </div>
-<script src="{{asset('public/admin/js/jquery-1.12.4.js')}}"></script> 
-<script src="{{asset('public/admin/js/jquery-ui.js')}}"></script> 
+<script src="{{asset('admin/js/jquery-1.12.4.js')}}"></script>
+<script src="{{asset('admin/js/jquery-ui.js')}}"></script>
 <script>
-//$(document).ready(function () {
-$('#search_product').autocomplete({
-    source: "{{route('search')}}",
-    minlength: 1,
-    autoFocus: true,
-    select: function (e, ui) {
-        $('#product_id').val(ui.item.id);
-    }
-});
+    //$(document).ready(function () {
+    $('#search_product').autocomplete({
+        source: "{{route('search')}}",
+        minlength: 1,
+        autoFocus: true,
+        select: function(e, ui) {
+            $('#product_id').val(ui.item.id);
+        }
+    });
 
-$('.enterKey').keypress(function (e) {
-    if (e.which === 13) {
-        $('#myform').submit();
+    $('.enterKey').keypress(function(e) {
+        if (e.which === 13) {
+            $('#myform').submit();
+        }
+    });
+    $('.calculate').bind('keyup mouseup', function() {
+        calculate();
+    });
+    $('.show_extra_discount_area').click(function() {
+        $('#extra_discount').val('');
+        $('.extra_discount_area').slideToggle('slow');
+        $('.show_extra_discount_area i').toggleClass("fa-plus fa-minus");
+        if ($('#extra_discount').attr('required')) {
+            $('#extra_discount').attr('required', false);
+            $('#discount_reference').attr('required', false);
+            $('#check_extra_discount').val(0);
+        } else {
+            $('#extra_discount').attr('required', true);
+            $('#discount_reference').attr('required', true);
+            $('#check_extra_discount').val(1);
+        }
+        calculate();
+    });
+
+    function calculate() {
+        var receive_amount = $('#receive_amount').val() | 0;
+        var grand_total = parseFloat($('#grand_total').html());
+        var extra_discount = parseFloat($('#extra_discount').val()) | 0;
+        var return_amount = Math.round((receive_amount + extra_discount - grand_total) * 100) / 100;
+        $('#return_amount').html(return_amount + " /=");
     }
-});
-$('.calculate').bind('keyup mouseup', function () {
-    calculate();
-});
-$('.show_extra_discount_area').click(function () {
-    $('#extra_discount').val('');
-    $('.extra_discount_area').slideToggle('slow');
-    $('.show_extra_discount_area i').toggleClass("fa-plus fa-minus");
-    if ($('#extra_discount').attr('required')) {
-        $('#extra_discount').attr('required', false);
-        $('#discount_reference').attr('required', false);
-        $('#check_extra_discount').val(0);
-    } else {
-        $('#extra_discount').attr('required', true);
-        $('#discount_reference').attr('required', true);
-        $('#check_extra_discount').val(1);
-    }
-    calculate();
-});
-function calculate() {
-    var receive_amount = $('#receive_amount').val() | 0;
-    var grand_total = parseFloat($('#grand_total').html());
-    var extra_discount = parseFloat($('#extra_discount').val()) | 0;
-    var return_amount = Math.round((receive_amount + extra_discount - grand_total) * 100) / 100;
-    $('#return_amount').html(return_amount + " /=");
-}
-//});
+    //});
 </script>
 @endsection

@@ -97,14 +97,7 @@ CREATE TABLE `companies` (
 --
 
 INSERT INTO `companies` (`id`, `company_name`, `company_address`, `company_email`, `company_phone`, `company_vat_reg_no`, `user_id`, `version_number`, `created_at`, `updated_at`) VALUES
-(1, 'Shadowhite Animators Ltd.', '2B/8, Pallabi, Mirpur, Dhaka-1216', 'faisaldiu@yahoo.com', '01719482846', '', '0', 0, '2017-08-20 05:52:12', '2017-08-20 05:52:12'),
-(2, 'Royal Restaurant and Party Center', 'Dubai Plaza, Arihazar, Narayangonjg', 'royalrestaurant@gmail.com', '01711871527', NULL, '1', 0, '2017-09-06 06:06:52', '2017-09-06 06:06:52'),
-(3, 'Royal Restaurant and Party Center', 'Dubai Plaza, Arihazar, Narayangonjg', 'royalrestaurant@gmail.com', '01711871527', NULL, '1', 0, '2017-09-06 06:07:01', '2017-09-06 06:07:01'),
-(4, 'Royal Restaurant and Party Center', 'Dubai Plaza, Arihazar, Narayangonjg', 'royalrestaurant@gmail.com', '01711871527', '123456', '1', 0, '2017-09-09 00:49:56', '2017-09-09 00:49:56'),
-(5, 'Royal Restaurant and Party Center', 'Dubai Plaza, Arihazar, Narayanganj', 'royalrestaurant@gmail.com', '01711871527', NULL, '1', 0, '2017-09-09 00:50:51', '2017-09-09 00:50:51'),
-(6, 'Royal Restaurant and Party Center', 'Dubai Plaza, Araihazar, Narayanganj', 'royalrestaurant@gmail.com', '01711871527', NULL, '1', 0, '2017-09-09 00:51:17', '2017-09-09 00:51:17'),
-(7, 'Royal Restaurant and Party Center', 'Dubai Plaza, Araihazar, Narayanganj', 'royalrestaurant@gmail.com', '01854000400', NULL, '1', 0, '2017-09-20 01:41:49', '2017-09-20 01:41:49'),
-(8, 'Royal Restaurant and Party Center', 'Dubai Plaza, Araihazar, Narayanganj', 'royalrestaurant@gmail.com', '01854000400', NULL, '2', 0, '2017-11-06 02:08:12', '2017-11-06 02:08:12');
+(1, 'Royal Restaurant and Party Center', 'Dubai Plaza, Araihazar, Narayanganj', 'royalrestaurant@gmail.com', '01854000400', NULL, '2', 0, '2017-11-06 02:08:12', '2017-11-06 02:08:12');
 
 -- --------------------------------------------------------
 

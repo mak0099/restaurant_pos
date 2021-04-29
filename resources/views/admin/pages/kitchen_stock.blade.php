@@ -43,13 +43,13 @@
                         $item = App\Item::find($k_stock->item_id);
                         ?>
                         <input type="hidden" id="unit{{$item->id}}" value="{{$item->unit}}">
-                        @endforeach 
+                        @endforeach
                         <div class="control-group">
                             <label class="control-label">Quantity :</label>
                             <div class="controls">
                                 <div class="input-append" style="width:100%;">
-                                    <input type="number" step="0.001" placeholder="Quantity" class="span6" name="quantity" required=""/>
-                                    <span class="add-on" id="unit"></span> 
+                                    <input type="number" step="0.001" placeholder="Quantity" class="span6" name="quantity" required="" />
+                                    <span class="add-on" id="unit"></span>
                                 </div>
                             </div>
                         </div>
@@ -69,8 +69,8 @@
                             <div class="control-group">
                                 <label class="control-label"><i class="fa fa-search"></i> <b>Search Item :</b></label>
                                 <div class="controls">
-                                    <input type="text" placeholder="Item Name" class="span9 item_name" autofocus=""/>
-                                    <input type="number" step="0.001" placeholder="Qty" id="quantity" name="quantity" class="span1 enterKey" max="10000"/>
+                                    <input type="text" placeholder="Item Name" class="span9 item_name" autofocus="" />
+                                    <input type="number" step="0.001" placeholder="Qty" id="quantity" name="quantity" class="span1 enterKey" max="10000" />
                                     <select name="unit" class="span1 unit" required="">
                                         <option value="kg">kg</option>
                                         <option value="gm">gm</option>
@@ -79,14 +79,14 @@
                                         <option value="piece">piece</option>
                                         <option value="pack">pack</option>
                                     </select>
-                                    <input type="hidden" id="item_id" name="item_id"/>
+                                    <input type="hidden" id="item_id" name="item_id" />
                                     <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> </button>
                                 </div>
                                 <label class="control-label">Available Stock :</label>
                                 <div class="controls">
-                                    <input type="text" class="span9 item_name" disabled="" style="cursor: auto"/>
-                                    <input type="number" class="span1" id="stock_qty"  disabled="" style="cursor: auto"/>
-                                    <input type="text" class="span1 unit"  disabled="" style="cursor: auto"/>
+                                    <input type="text" class="span9 item_name" disabled="" style="cursor: auto" />
+                                    <input type="number" class="span1" id="stock_qty" disabled="" style="cursor: auto" />
+                                    <input type="text" class="span1 unit" disabled="" style="cursor: auto" />
                                 </div>
                             </div>
                         </form>
@@ -97,7 +97,7 @@
                     <button class="close" data-dismiss="alert">×</button>
                     @foreach($errors->all() as $error)
                     <p>
-                        <strong>Error!</strong>  {{ $error }}
+                        <strong>Error!</strong> {{ $error }}
                     </p>
                     @endforeach
                 </div>
@@ -151,39 +151,38 @@
     </div>
 </div>
 
-<script src="{{asset('public/admin/js/jquery-1.12.4.js')}}"></script> 
-<script src="{{asset('public/admin/js/jquery-ui.js')}}"></script> 
+<script src="{{asset('admin/js/jquery-1.12.4.js')}}"></script>
+<script src="{{asset('admin/js/jquery-ui.js')}}"></script>
 <script type="text/javascript">
-//$(document).ready(function () {
-$('.item_name').autocomplete({
-    source: "{{route('search_item')}}",
-    minlength: 1,
-    autoFocus: true,
-    select: function (e, ui) {
-        $('#item_id').val(ui.item.id);
-        $('.item_name').val(ui.item.value);
-        $('#stock_qty').val(ui.item.quantity);
-        $('.unit').val(ui.item.unit);
-    }
-});
-$('.enterKey').keypress(function (e) {
-    if (e.which === 13) {
-        $('#myform').submit();
-    }
-});
-//});
+    //$(document).ready(function () {
+    $('.item_name').autocomplete({
+        source: "{{route('search_item')}}",
+        minlength: 1,
+        autoFocus: true,
+        select: function(e, ui) {
+            $('#item_id').val(ui.item.id);
+            $('.item_name').val(ui.item.value);
+            $('#stock_qty').val(ui.item.quantity);
+            $('.unit').val(ui.item.unit);
+        }
+    });
+    $('.enterKey').keypress(function(e) {
+        if (e.which === 13) {
+            $('#myform').submit();
+        }
+    });
+    //});
 </script>
 <script>
-    $(window).load(function () {
+    $(window).load(function() {
         var valueSelected = $('#item').val();
         var unit = $('#unit' + valueSelected).val();
         $('#unit').text(unit);
     })
-    $('#item').on('change', function (e) {
+    $('#item').on('change', function(e) {
         var valueSelected = this.value;
         var unit = $('#unit' + valueSelected).val();
         $('#unit').text(unit);
     });
-
 </script>
 @include('admin.partials.footer')
