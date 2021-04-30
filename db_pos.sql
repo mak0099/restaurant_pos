@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.5.2
+-- version 4.9.5
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 23, 2017 at 06:42 AM
--- Server version: 10.1.21-MariaDB
--- PHP Version: 5.6.30
+-- Host: localhost:3306
+-- Generation Time: Apr 29, 2021 at 01:12 PM
+-- Server version: 10.3.23-MariaDB
+-- PHP Version: 7.3.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `db_pos`
+-- Database: `makngbdc_restaurant_pos`
 --
 
 -- --------------------------------------------------------
@@ -33,8 +35,8 @@ CREATE TABLE `categories` (
   `publication_status` tinyint(1) NOT NULL,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -87,7 +89,7 @@ CREATE TABLE `companies` (
   `company_phone` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `company_vat_reg_no` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `user_id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -114,7 +116,7 @@ CREATE TABLE `costs` (
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deletation_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -135,7 +137,7 @@ CREATE TABLE `cost_histories` (
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `deletation_status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -256,8 +258,8 @@ CREATE TABLE `damage_items` (
   `date` date NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -271,12 +273,12 @@ CREATE TABLE `damage_items` (
 CREATE TABLE `equipment_costs` (
   `id` int(10) UNSIGNED NOT NULL,
   `equipment_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `description` text COLLATE utf8mb4_unicode_ci,
+  `description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `amount` double NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -293,8 +295,8 @@ CREATE TABLE `items` (
   `unit` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -430,8 +432,8 @@ CREATE TABLE `kitchens` (
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -453,8 +455,8 @@ CREATE TABLE `kitchen_histories` (
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -517,7 +519,7 @@ CREATE TABLE `orders` (
   `grand_total` double NOT NULL,
   `receive_amount` double(8,2) NOT NULL,
   `return_amount` double(8,2) NOT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `date` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -7327,7 +7329,7 @@ INSERT INTO `orders` (`id`, `invoice_number`, `user_id`, `subtotal`, `discount_t
 CREATE TABLE `products` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `product_description` text COLLATE utf8mb4_unicode_ci,
+  `product_description` text COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `product_code` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `product_price` double(8,2) NOT NULL,
   `product_discount` double(5,2) DEFAULT NULL,
@@ -7336,8 +7338,8 @@ CREATE TABLE `products` (
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `publication_status` tinyint(1) NOT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -7577,8 +7579,8 @@ CREATE TABLE `salary_costs` (
   `remark` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -7598,11 +7600,11 @@ CREATE TABLE `sales` (
   `quantity` int(11) NOT NULL,
   `product_price` double(8,2) NOT NULL,
   `discount_type` tinyint(4) NOT NULL,
-  `discount` double(8,2) NOT NULL DEFAULT '0.00',
+  `discount` double(8,2) NOT NULL DEFAULT 0.00,
   `amount` double(8,2) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` date NOT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26510,13 +26512,13 @@ INSERT INTO `sales` (`id`, `invoice_number`, `product_id`, `product_code`, `prod
 
 CREATE TABLE `settings` (
   `id` int(10) UNSIGNED NOT NULL,
-  `discount_type` tinyint(4) NOT NULL DEFAULT '1',
-  `discount` double(8,2) NOT NULL DEFAULT '0.00',
+  `discount_type` tinyint(4) NOT NULL DEFAULT 1,
+  `discount` double(8,2) NOT NULL DEFAULT 0.00,
   `discount_deadline` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `vat` double(8,2) NOT NULL DEFAULT '0.00',
-  `service_charge` double(8,2) NOT NULL DEFAULT '0.00',
+  `vat` double(8,2) NOT NULL DEFAULT 0.00,
+  `service_charge` double(8,2) NOT NULL DEFAULT 0.00,
   `user_id` int(11) NOT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26544,8 +26546,8 @@ CREATE TABLE `stocks` (
   `date` date NOT NULL,
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26630,8 +26632,8 @@ CREATE TABLE `stock_histories` (
   `created_by` int(11) NOT NULL,
   `updated_by` int(11) DEFAULT NULL,
   `status` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26744,9 +26746,9 @@ INSERT INTO `stock_histories` (`id`, `item_id`, `item_name`, `quantity`, `total_
 CREATE TABLE `temp_orders` (
   `id` int(10) UNSIGNED NOT NULL,
   `product_id` int(11) NOT NULL,
-  `quantity` int(11) NOT NULL DEFAULT '1',
+  `quantity` int(11) NOT NULL DEFAULT 1,
   `user_id` int(11) NOT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -26765,11 +26767,11 @@ CREATE TABLE `users` (
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `phone` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `deletation_status` tinyint(1) NOT NULL DEFAULT '0',
+  `deletation_status` tinyint(1) NOT NULL DEFAULT 0,
   `role` tinyint(4) NOT NULL,
   `created_by` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `updated_by` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `version_number` int(11) NOT NULL DEFAULT '0',
+  `version_number` int(11) NOT NULL DEFAULT 0,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -26781,11 +26783,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `fname`, `lname`, `username`, `email`, `password`, `phone`, `deletation_status`, `role`, `created_by`, `updated_by`, `version_number`, `remember_token`, `created_at`, `updated_at`) VALUES
 (1, 'Md. Arif', 'Khan', 'mak', 'mak0099@gmail.com', '$2y$10$/PHJzh/e0WobMiC5Jw1Yv.i0pIErLM2zrkmNaBsYXMmgSZZFD6N5q', '01676264346', 1, 1, '1', NULL, 0, 'PLTwP2xxYyLxIBOgXBhEeCVIiUR7V73SdDwGclWl0Cxjtzq949TLiRk4BSIF', '2017-08-20 05:52:27', '2017-11-06 00:21:45'),
-(2, 'Royal', 'Restaurant', 'admin', 'admin@royalrestaurantbd.com', '$2y$10$OZ0oKtaUHyXdsleRWzSVUO24Y/jm2DaQhamMlHcZXKyMYFbajKJt2', '0123456789', 0, 1, '1', NULL, 0, 'TO01zApAENrGkvCRPNjmAIi7XjEz03ypoAQe2Y2M6Vhxmn8ecgcbSEg8WkQK', '2017-08-20 05:53:07', '2017-08-20 05:53:07'),
-(3, 'Mahedi Hasan', 'Bhuiyan', 'Mahedi', 'mahedimhb@gmail.com', '$2y$10$OIXneIsG3bU0ZPxBWnOItOBQFbRMsIkAb5NPPV1UfS.Q8lgrMs2Rq', '01989891411', 0, 1, '1', NULL, 0, 'ifcWiluZsh4r3WOhqngbrjlypPhqGeRdPQfMMtPpPF06nQJqopD4vWUBekbp', '2017-09-05 03:11:44', '2017-09-05 03:11:44'),
-(4, 'Md. Arif', 'Khan', 'mak', 'mak0099@gmail.com', '$2y$10$sySx7pDitcqmCGwkD9mTNuGUNlFsgwcYwiOf4qU90NBJI2wevKA8C', '01676264346', 1, 1, '1', NULL, 0, NULL, '2017-10-12 06:47:22', '2017-11-06 00:21:37'),
-(5, 'Md. Arif', 'Khan', 'mak', 'mak0099@gmail.com', '$2y$10$ch8bDauszYw2OIh85YH03OXm0ErRX7VRGJBprxHGj0hgp8cg/WRJy', '01676264346', 1, 1, '1', NULL, 0, NULL, '2017-10-12 06:47:22', '2017-11-06 00:21:33'),
-(6, 'Md. Arif', 'Khan', 'mak', 'mak0099@gmail.com', '$2y$10$SgcYx9fEc35KubFecFijJOe8FpbtzrUkxSKD55xwKA7yZJH/TilV.', '01676264346', 1, 1, '1', NULL, 0, NULL, '2017-10-12 06:47:22', '2017-11-06 00:21:30');
+(2, 'Demo', 'User', 'user', 'user@example.com', '$2y$10$FzX0jnC/Jq1taMxxtGqUIe8AlBBxAAZBq38WbpNo340tv1jWfvRbu', '0123456789', 0, 0, '2', NULL, 0, '47o4kmZAEFTIMhSsvVjJaKfMqWdYKCZACgsdziV4hpHvqp1yXJjcdI7nZBVe', '2021-04-29 22:57:50', '2021-04-29 22:57:50'),
+(3, 'Demo', 'Admin', 'admin', 'admin@example.com', '$2y$10$RFmRPML4KMH0Qdkc9V1efuPJS0KSo4/WWsP4XiAXkKg5lbYJs3Tf6', '0123456789', 0, 1, '2', NULL, 0, 'g2hY1WzmTGCuITupKacBch4SEOqqaARz1pJ6ddiAFIBYdaprGBGMCiaCRGXA', '2021-04-29 23:01:32', '2021-04-29 23:01:32');
 
 --
 -- Indexes for dumped tables
@@ -26920,101 +26919,122 @@ ALTER TABLE `users`
 --
 ALTER TABLE `categories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+
 --
 -- AUTO_INCREMENT for table `companies`
 --
 ALTER TABLE `companies`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
 --
 -- AUTO_INCREMENT for table `costs`
 --
 ALTER TABLE `costs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `cost_histories`
 --
 ALTER TABLE `cost_histories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
 --
 -- AUTO_INCREMENT for table `damage_items`
 --
 ALTER TABLE `damage_items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `equipment_costs`
 --
 ALTER TABLE `equipment_costs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `items`
 --
 ALTER TABLE `items`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=113;
+
 --
 -- AUTO_INCREMENT for table `kitchens`
 --
 ALTER TABLE `kitchens`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `kitchen_histories`
 --
 ALTER TABLE `kitchen_histories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
+
 --
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6770;
+
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=199;
+
 --
 -- AUTO_INCREMENT for table `reservations`
 --
 ALTER TABLE `reservations`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `salary_costs`
 --
 ALTER TABLE `salary_costs`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `sales`
 --
 ALTER TABLE `sales`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18834;
+
 --
 -- AUTO_INCREMENT for table `settings`
 --
 ALTER TABLE `settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `stocks`
 --
 ALTER TABLE `stocks`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=58;
+
 --
 -- AUTO_INCREMENT for table `stock_histories`
 --
 ALTER TABLE `stock_histories`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
+
 --
 -- AUTO_INCREMENT for table `temp_orders`
 --
 ALTER TABLE `temp_orders`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
